@@ -30,7 +30,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Show YouTube Video on Page Load</title>
+	<title>Show YouTube Video with Autoplay</title>
 	<style>
 		#video-container {
 			width: 640px;
@@ -41,7 +41,7 @@
 	<script>
 		function showVideo() {
 			var videoContainer = document.getElementById('video-container');
-			videoContainer.innerHTML = '<iframe width="640" height="360" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>';
+			videoContainer.innerHTML = '<iframe width="640" height="360" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>';
 		}
 	</script>
 </head>
@@ -49,4 +49,3 @@
 	<div id="video-container"></div>
 </body>
 </html>
-
