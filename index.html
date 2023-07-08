@@ -1,70 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>im soory
-	</title>
-	<style>
-		.container {
-			background-color: #333;
-			padding: 10px;
-			color: #fff;
-		}
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
 
-		.heading {
-			font-size: 48px;
-			font-weight: bold;
-			text-align: center;
-			margin: 0;
-			padding: 20px 0;
-			letter-spacing: 8px;
-			text-transform: uppercase;
-		}
-	</style>
+        h1 {
+            margin-top: 50px;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #attempts {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-	<div class="container">
-		<h1 class="heading">I'm Sorry</h1>
-	</div>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Show YouTube Video with Autoplay</title>
-	<p class="hidden-text">This is hidden text.</p>
+    <h1>Guess the Number Game</h1>
+    <p>Try to guess the randomly generated number between 1 and 100.</p>
+    <input type="text" id="guessInput" placeholder="Enter your guess" pattern="[0-9]+" />
+    <button onclick="checkGuess()">Guess</button>
+    <p id="attempts">Remaining attempts: 3</p>
 
-	<style>
-		#video-container {
-			width: 640px;
-			height: 360px;
-			margin: 0 auto;
-		}
-	</style>
-	<script>
-		function showVideo() {
-			var videoContainer = document.getElementById('video-container');
-			videoContainer.innerHTML = '<iframe width="640" height="360" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-		}
-	</script>
-</head>
-<body onload="showVideo()">
-	<div id="video-container"></div>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>I'm Sorry</title>
-	<style>
-		.hidden-text {
-			display: none;
-		}
-	</style>
-</head>
-<body>
-	<div class="container">
-		<p class="hidden-text">"I've been kidnapped! I'm in danger and I need help immediately. Please, someone, come to my rescue. I fear for my life and need assistance to escape this situation. Please, act quickly!".</p>
-	</div>
+    <script>
+        var attempts = 3;
+        var randomNumber;
+
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 100) + 1;
+        }
+
+        function checkGuess() {
+            var guessInput = document.getElementById('guessInput');
+            var guess = parseInt(guessInput.value);
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                alert("Please enter a valid number between 1 and 100.");
+                return;
+            }
+
+            if (!randomNumber) {
+                randomNumber = generateRandomNumber();
+            }
+
+            if (guess === randomNumber) {
+                alert("Congratulations! You guessed the correct number.");
+                resetGame();
+            } else if (guess < randomNumber) {
+                alert("Too low! Try a higher number.");
+            } else {
+                alert("Too high! Try a lower number.");
+            }
+
+            guessInput.value = '';
+            attempts--;
+
+            var attemptsText = document.getElementById('attempts');
+            attemptsText.innerHTML = "Remaining attempts: " + attempts;
+
+            if (attempts === 0) {
+                alert("Game over! You ran out of attempts. The correct number was " + randomNumber);
+                resetGame();
+            }
+        }
+
+        function resetGame() {
+            randomNumber = null;
+            attempts = 3;
+            var attemptsText = document.getElementById('attempts');
+            attemptsText.innerHTML = "Remaining attempts: " + attempts;
+        }
+    </script>
 </body>
 </html>
